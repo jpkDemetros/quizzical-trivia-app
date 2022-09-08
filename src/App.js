@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Home from './components/Home';
+import Quiz from './components/Quiz';
+import blueBlob from './images/blue-blob.png';
+import yellowBlob from './images/yellow-blob.png';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [start, setStart] = useState(false)
+    
+    function startQuiz() {
+        setStart(true)
+    }
+    
+    return (
+        <div className="container">
+            <img className="blue-blob" alt="" src={blueBlob}/>
+            <img className="yellow-blob" alt="" src={yellowBlob}/>
+            {
+                start
+                ?
+                <Quiz />
+                :
+                <Home startQuiz={startQuiz} />
+            }
+        </div>
+    )
 }
-
-export default App;
